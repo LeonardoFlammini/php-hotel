@@ -38,25 +38,25 @@
             'distance_to_center' => 50
         ],
     ];
-    var_dump($_GET,$hotels);
+    // var_dump($_GET,$hotels);
   $arrayToPrint = [];
   $parkingValue = filter_var($_GET['parkingSelect'], FILTER_VALIDATE_BOOLEAN);
-  $voteValue = $_GET["voteSelect"];
+  $voteValue = intval($_GET["voteSelect"]);
 
   if($parkingValue){
         foreach($hotels as $hotel){
-            if($hotel["parking"]){
+            if($hotel["parking"] && $hotel["vote"] >= $voteValue ){
              $arrayToPrint[] = $hotel;
         }
     }
     }else{
         foreach($hotels as $hotel){
-            if(!$hotel["parking"]){
+            if(!$hotel["parking"] && $hotel["vote"] >= $voteValue){
              $arrayToPrint[] = $hotel;
         }
     }
     }
-  var_dump($arrayToPrint,$parkingValue);
+  // var_dump($arrayToPrint,$parkingValue,$voteValue);
 
   
 ?>
